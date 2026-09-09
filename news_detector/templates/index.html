@@ -1,29 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Fake News Detector</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #1e3a8a;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            resize: vertical;
+            font-size: 15px;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 18px;
+            padding: 13px;
+            border: none;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            background: #eff6ff;
+            color: #1e3a8a;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Fake News Detection System</h1>
+    <div class="container">
 
-    <form action="/predict" method="POST">
+        <div class="header">
+            <h1>Fake News Detector</h1>
+            <p>Enter a news article below to check whether it is fake or real.</p>
+        </div>
 
-        <textarea name="news" rows="10" cols="50"></textarea>
+        <form action="/predict" method="POST">
 
-        <br><br>
+            <textarea
+                name="news"
+                placeholder="Paste or type the news article here..."
+                required></textarea>
 
-        <button type="submit">Check News</button>
+            <button type="submit">
+                Check News
+            </button>
 
-    </form>
+        </form>
 
-    {% if prediction %}
+        {% if prediction %}
 
-        <h2>{{ prediction }}</h2>
+        <div class="result">
+            {{ prediction }}
+        </div>
 
-    {% endif %}
+        {% endif %}
+
+        <div class="footer">
+            Machine Learning Based News Classification System
+        </div>
+
+    </div>
 
 </body>
 
